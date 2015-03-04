@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackExchange.Redis.Extensions.Data", "src\StackExchange.Redis.Extensions.Data\StackExchange.Redis.Extensions.Data.csproj", "{FEB7E55A-0FB2-44CE-85C7-CF7465AEDC1D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BB1796AE-FDC2-45FA-AA35-2AC79FD9D72F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{5ED07A7C-D4D1-4B5A-8FCC-75373F6191C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{EB03ABE6-0B35-4FF3-A14A-9D341CFCB59B}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackExchange.Redis.Extensions.Data.Tests", "tests\StackExchange.Redis.Extensions.Data.Tests\StackExchange.Redis.Extensions.Data.Tests.csproj", "{78B60AC0-53BB-4445-99CA-EB590E2A71CC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FEB7E55A-0FB2-44CE-85C7-CF7465AEDC1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEB7E55A-0FB2-44CE-85C7-CF7465AEDC1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEB7E55A-0FB2-44CE-85C7-CF7465AEDC1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEB7E55A-0FB2-44CE-85C7-CF7465AEDC1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78B60AC0-53BB-4445-99CA-EB590E2A71CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78B60AC0-53BB-4445-99CA-EB590E2A71CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78B60AC0-53BB-4445-99CA-EB590E2A71CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78B60AC0-53BB-4445-99CA-EB590E2A71CC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FEB7E55A-0FB2-44CE-85C7-CF7465AEDC1D} = {BB1796AE-FDC2-45FA-AA35-2AC79FD9D72F}
+		{78B60AC0-53BB-4445-99CA-EB590E2A71CC} = {5ED07A7C-D4D1-4B5A-8FCC-75373F6191C7}
+	EndGlobalSection
+EndGlobal
