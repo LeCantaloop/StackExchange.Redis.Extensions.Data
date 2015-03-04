@@ -4,13 +4,13 @@ using System.Reflection;
 
 namespace StackExchange.Redis.Extensions.Data
 {
-    public class MultipleKeyGenerator : IMultipleKeyGenerator
+    public class IndexKeyGenerator : IMultipleKeyGenerator
     {
         private readonly IKeyGenerator _keyGenerator;
 
-        public MultipleKeyGenerator(IKeyGenerator keyGenerator)
+        public IndexKeyGenerator(IKeyGenerator identityKeyGenerator)
         {
-            _keyGenerator = keyGenerator;
+            _keyGenerator = identityKeyGenerator;
         }
 
         public IEnumerable<Key> Generate<T>(T o)

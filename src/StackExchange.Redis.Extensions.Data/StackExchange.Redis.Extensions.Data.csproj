@@ -63,7 +63,7 @@
     <Compile Include="MultipleKeyGenerator.cs" />
     <Compile Include="IKeyGenerator.cs" />
     <Compile Include="IndexAttribute.cs" />
-    <Compile Include="KeyAttributeKeyGenerator.cs" />
+    <Compile Include="IdentityKeyGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyKeyGenerator.cs" />
     <Compile Include="RedisGraphRepository.cs" />

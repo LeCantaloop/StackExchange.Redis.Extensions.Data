@@ -10,7 +10,7 @@ namespace StackExchange.Redis.Extensions.Data.Tests
         public void KeyAttributeGenerateTest()
         {
             var test = new KeyClass { Uid = 1000 };
-            var kg = new KeyAttributeKeyGenerator();
+            var kg = new IdentityKeyGenerator();
             var key = kg.Generate(test);
 
             Assert.AreEqual("uid:1000", key.ToString());
@@ -20,7 +20,7 @@ namespace StackExchange.Redis.Extensions.Data.Tests
         public void NoKeyAttributeGenerateTest()
         {
             var test = new UnkeyedClassWithId { Id = 1000 };
-            var kg = new KeyAttributeKeyGenerator();
+            var kg = new IdentityKeyGenerator();
             var key = kg.Generate(test);
 
             Assert.AreEqual("unkeyedclasswithidid:1000", key.ToString());
@@ -30,7 +30,7 @@ namespace StackExchange.Redis.Extensions.Data.Tests
         public void NoKeyAttributeGenerateTest2()
         {
             var test = new UnkeyedClass { UnkeyedClassId = 1000 };
-            var kg = new KeyAttributeKeyGenerator();
+            var kg = new IdentityKeyGenerator();
             var key = kg.Generate(test);
 
             Assert.AreEqual("unkeyedclassid:1000", key.ToString());

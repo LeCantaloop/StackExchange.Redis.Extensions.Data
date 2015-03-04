@@ -54,7 +54,7 @@ namespace StackExchange.Redis.Extensions.Data.Tests
         public void KeyTest()
         {
             var c = new TestClass() { Id = 1000, Email = "test@foo.local" };
-            var kg = new MultipleKeyGenerator(new KeyAttributeKeyGenerator());
+            var kg = new IndexKeyGenerator(new IdentityKeyGenerator());
             var keys = kg.Generate(c);
 
             var k1 = keys.First();

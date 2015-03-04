@@ -29,6 +29,12 @@ namespace StackExchange.Redis.Extensions.Data
             return new RedisRepository(cacheClient, keyGenerator, multipleKeyGenerator);
         }
 
+        public static RedisRepository GetInstance(ICacheClient cacheClient)
+        {
+            var kg = new IdentityKeyGenerator();
+            return GetInstance(cacheClient, kg, new IndexKeyGenerator(kg));
+        }
+
         public void AddOrUpdate<T>(T u) where T : class
         {
             // keyFormat + index property name

@@ -16,8 +16,7 @@ namespace StackExchange.Redis.Extensions.Data.Tests
         [TestMethod()]
         public void AddOrUpdateTest()
         {
-            var kg = new KeyAttributeKeyGenerator();
-            var repository = RedisRepository.GetInstance(new MockCacheClient(), kg, new MultipleKeyGenerator(kg));
+            var repository = RedisRepository.GetInstance(new MockCacheClient());
 
             //TODO: Request next key
             var u0 = new User
@@ -40,8 +39,7 @@ namespace StackExchange.Redis.Extensions.Data.Tests
         [TestMethod]
         public void AddBidirectionEdgeTest()
         {
-            var kg = new KeyAttributeKeyGenerator();
-            var graphRepo = RedisGraphRepository.GetInstance(new MockCacheClient(), kg, "friends");
+            var graphRepo = RedisGraphRepository.GetInstance(new MockCacheClient(), "friends");
 
             var u0 = new User
             {

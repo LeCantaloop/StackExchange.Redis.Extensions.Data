@@ -26,6 +26,11 @@ namespace StackExchange.Redis.Extensions.Data
             return new RedisGraphRepository(cacheClient, keyGenerator, relationshipName);
         }
 
+        public static RedisGraphRepository GetInstance(ICacheClient cacheClient, string relationshipName)
+        {
+            return GetInstance(cacheClient, new IdentityKeyGenerator(), relationshipName);
+        }
+
         public void AddUnidirectionalEdge<T>(T a, T b)
         {
             var edgeKey = GenerateEdgeKey(a);

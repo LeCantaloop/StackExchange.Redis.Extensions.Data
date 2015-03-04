@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 
 namespace StackExchange.Redis.Extensions.Data
 {
-    public class KeyAttributeKeyGenerator : IKeyGenerator
+    public class IdentityKeyGenerator : IKeyGenerator
     {
         public Key Generate<T>(T o)
         {
@@ -22,14 +23,21 @@ namespace StackExchange.Redis.Extensions.Data
             }
 
             var k = new PropertyKeyGenerator("Id");
-            var retval = k.Generate<T>(o);
+            var retval = k.Generate(o);
             if (retval != null)
             {
                 return retval;
             }
 
             k = new PropertyKeyGenerator(t.Name + "Id");
-            return k.Generate(o);
+            retval = k.Generate(o);
+
+            if (retval != null)
+            {
+                return retval;
+            }
+
+            throw new InvalidOperationException("Could not find a property to use as an identity for the specified type.");
         }
     }
 }
