@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>StackExchange.Redis.Extensions.Data</id>
+        <title>StackExchange.Redis.Extensions.Data</title>
+        <version>$version$</version>
+        <authors>$author$</authors>
+        <owners>$author$</owners>
+        <licenseUrl>https://github.com/rjmurillo/SimpleRedisGraph/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/rjmurillo/SimpleRedisGraph</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>
+            Extends StackExchange.Redis.Extensions allowing implementation of object relationships, storage of object properties as hashes, and implementing a Repository pattern.
+        </description>
+        <summary>
+            StackExchange.Redis.Extensions.Data is a library that extends StackExchange.Redis.Extensions
+        </summary>
+        <releaseNotes>
+            Initial version
+        </releaseNotes>
+        <copyright>Richard Murillo</copyright>
+        <language>en-US</language>
+        <tags>Async Redis NoSQL Client Distributed Cache PubSub Messaging</tags>
+    </metadata>
+</package>
