@@ -9,14 +9,16 @@ namespace StackExchange.Redis.Extensions.Data
     public class RedisRepository
     {
         private readonly ICacheClient _cacheClient;
+        private readonly ISerializer _serializer;
         private readonly IKeyGenerator _keyGenerator;
         private readonly IMultipleKeyGenerator _multipleKeyGenerator;
 
-        private RedisRepository(ICacheClient cacheClient, IKeyGenerator keyGenerator, IMultipleKeyGenerator multipleKeyGenerator)
+        private RedisRepository(ICacheClient cacheClient, ISerializer serializer, IKeyGenerator keyGenerator, IMultipleKeyGenerator multipleKeyGenerator)
         {
             _keyGenerator = keyGenerator;
             _multipleKeyGenerator = multipleKeyGenerator;
             _cacheClient = cacheClient;
+            _serializer = serializer;
         }
 
         private ICacheClient CacheClient
@@ -24,15 +26,15 @@ namespace StackExchange.Redis.Extensions.Data
             get { return _cacheClient; }
         }
 
-        public static RedisRepository GetInstance(ICacheClient cacheClient, IKeyGenerator keyGenerator, IMultipleKeyGenerator multipleKeyGenerator)
+        public static RedisRepository GetInstance(ICacheClient cacheClient, ISerializer serializer, IKeyGenerator keyGenerator, IMultipleKeyGenerator multipleKeyGenerator)
         {
-            return new RedisRepository(cacheClient, keyGenerator, multipleKeyGenerator);
+            return new RedisRepository(cacheClient, serializer, keyGenerator, multipleKeyGenerator);
         }
 
         public static RedisRepository GetInstance(ICacheClient cacheClient)
         {
             var kg = new IdentityKeyGenerator();
-            return GetInstance(cacheClient, kg, new IndexKeyGenerator(kg));
+            return GetInstance(cacheClient, cacheClient.Serializer, kg, new IndexKeyGenerator(kg));
         }
 
         public void AddOrUpdate<T>(T u) where T : class
@@ -50,21 +52,21 @@ namespace StackExchange.Redis.Extensions.Data
             CacheClient.Database.HashSet(hashKey, GenerateHashEntries(u));
         }
 
-        private static HashEntry[] GenerateHashEntries<T>(T value) where T : class
+        private HashEntry[] GenerateHashEntries<T>(T value) where T : class
         {
             return GenerateHashEntriesImpl(value).ToArray();
         }
 
-        private static IEnumerable<HashEntry> GenerateHashEntriesImpl<T>(T value)
+        private IEnumerable<HashEntry> GenerateHashEntriesImpl<T>(T value)
             where T : class
         {
             var props = value.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
             foreach (var p in props)
             {
-                // Getting the value is where it gets funky
-                // We're assuming that the ToString of the object converts to a roundtrippable item
-                // Use ISerializer?
-                yield return new HashEntry(p.Name.ToLowerInvariant(), p.GetValue(value).ToString());
+                var propName = p.Name.ToLowerInvariant();
+                var propValue = p.GetValue(value);
+                var serializedPropValue = _serializer.Serialize(propValue);
+                yield return new HashEntry(propName, serializedPropValue);
             }
         }
 
@@ -83,12 +85,12 @@ namespace StackExchange.Redis.Extensions.Data
             foreach (var h in he)
             {
                 var p1 = p[h.Name];
-                if (p1.CanWrite)
-                {
-                    var pt = p1.PropertyType;
-                    var po = Convert.ChangeType(h.Value.ToString(), pt);
-                    p1.SetValue(o, po);
-                }
+                if (!p1.CanWrite) continue;
+
+                var pt = p1.PropertyType;
+                var deserializedValue = _serializer.Deserialize(h.Value);
+                var convertedValue = Convert.ChangeType(deserializedValue, pt);
+                p1.SetValue(o, convertedValue);
             }
 
             return o;
