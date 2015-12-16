@@ -76,3 +76,6 @@ The above would have keys generated as ```userid:1000```
 
 The ```[Index]``` attribute is useful in providing alternative ways to access an identifier or a specific property. For example, if you had a site where a user could login to the system with their email address, the [Index] could provide an easy way to look up the user identifier for an email address, or lookup an email address for a given user identifier. A generated key for this scenario would look like ```userid:1000:email``` where the value is the email address, and ```email:{value}:userid``` where "{value}" is the actual email address and the value of the key is the userid value.
 
+## How to contribute
+The maintainers groom the backlog of stories. Check which stores are ready here: 
+[![Stories in Ready](https://badge.waffle.io/LeCantaloop/StackExchange.Redis.Extensions.Data.svg?label=ready&title=Ready)](http://waffle.io/LeCantaloop/StackExchange.Redis.Extensions.Data) 
