@@ -6,8 +6,8 @@
         <version>$version$</version>
         <authors>$author$</authors>
         <owners>$author$</owners>
-        <licenseUrl>https://github.com/rjmurillo/SimpleRedisGraph/blob/master/LICENSE</licenseUrl>
-        <projectUrl>https://github.com/rjmurillo/SimpleRedisGraph</projectUrl>
+        <licenseUrl>https://github.com/LeCantaloop/StackExchange.Redis.Extensions.Data/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/LeCantaloop/StackExchange.Redis.Extensions.Data</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>
             Extends StackExchange.Redis.Extensions allowing implementation of object relationships, storage of object properties as hashes, and implementing a Repository pattern.
