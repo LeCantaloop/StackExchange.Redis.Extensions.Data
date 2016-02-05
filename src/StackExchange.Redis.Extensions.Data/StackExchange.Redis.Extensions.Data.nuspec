@@ -21,5 +21,17 @@
         <copyright>Richard Murillo</copyright>
         <language>en-US</language>
         <tags>Async Redis NoSQL Client Distributed Cache PubSub Messaging</tags>
+        <dependencies>
+            <dependency id="StackExchange.Redis.Extensions.Core" version="1.1.14" />
+        </dependencies>
+        <frameworkAssemblies>
+            <frameworkAssembly assemblyName="System" />
+            <frameworkAssembly assemblyName="System.ComponentModel.DataAnnotations" />
+            <frameworkAssembly assemblyName="System.Core" />
+            <frameworkAssembly assemblyName="System.Data" />
+            <frameworkAssembly assemblyName="System.Data.DataSetExtensions" />
+            <frameworkAssembly assemblyName="System.Xml" />
+            <frameworkAssembly assemblyName="System.Xml.Linq" />
+        </frameworkAssemblies>
     </metadata>
 </package>
