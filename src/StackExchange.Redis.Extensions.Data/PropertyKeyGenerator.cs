@@ -25,9 +25,9 @@ namespace StackExchange.Redis.Extensions.Data
 
             if (props.Name.StartsWith(o.Name, StringComparison.OrdinalIgnoreCase) || !propertyName.Equals("Id", StringComparison.OrdinalIgnoreCase))
             {
-                return new Key(props.Name, i == null ? null : props.GetValue(i).ToString());
+                return new Key(props.Name, i == null ? null : props.GetValue(i)?.ToString());
             }
-            return new Key((o.Name + props.Name), i == null ? null : props.GetValue(i).ToString());
+            return new Key((o.Name + props.Name), i == null ? null : props.GetValue(i)?.ToString());
         }
 
         public Key Generate<T>(T o)
