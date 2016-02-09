@@ -7,6 +7,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StackExchange.Redis.Extensions.Core;
+using StackExchange.Redis.Extensions.Newtonsoft;
 
 namespace StackExchange.Redis.Extensions.Data.Tests
 {
@@ -87,12 +88,13 @@ namespace StackExchange.Redis.Extensions.Data.Tests
 
         private class MockCacheClient : ICacheClient
         {
-            private MockDatabase _db;
+            private readonly MockDatabase _db;
+            private readonly NewtonsoftSerializer _serializer;
 
             public MockCacheClient()
             {
                 _db = new MockDatabase();
-                _serializer = new StackExchange.Redis.Extensions.Newtonsoft.JsonSerializer();
+                _serializer = new NewtonsoftSerializer();
             }
 
             public void Dispose()
@@ -128,112 +130,121 @@ namespace StackExchange.Redis.Extensions.Data.Tests
                 return null;
             }
 
-            public T Get<T>(string key) where T : class
+            public T Get<T>(string key)
+            {
+                return default(T);
+            }
+
+            public Task<T> GetAsync<T>(string key)
             {
                 return null;
             }
 
-            public Task<T> GetAsync<T>(string key) where T : class
-            {
-                return null;
-            }
-
-            public bool Add<T>(string key, T value) where T : class
+            public bool Add<T>(string key, T value)
             {
                 Debug.WriteLine(key + " : " + value);
                 Database.StringSet(key, Serializer.Serialize(value));
-               
+
                 return true;
             }
 
-            public Task<bool> AddAsync<T>(string key, T value) where T : class
+            public Task<bool> AddAsync<T>(string key, T value)
             {
                 return null;
             }
 
-            public bool Replace<T>(string key, T value) where T : class
+            public bool Replace<T>(string key, T value)
             {
                 return false;
             }
 
-            public Task<bool> ReplaceAsync<T>(string key, T value) where T : class
+            public Task<bool> ReplaceAsync<T>(string key, T value)
             {
                 return null;
             }
 
-            public bool Add<T>(string key, T value, DateTimeOffset expiresAt) where T : class
+            public bool Add<T>(string key, T value, DateTimeOffset expiresAt)
             {
                 return false;
             }
 
-            public Task<bool> AddAsync<T>(string key, T value, DateTimeOffset expiresAt) where T : class
+            public Task<bool> AddAsync<T>(string key, T value, DateTimeOffset expiresAt)
             {
                 return null;
             }
 
-            public bool Replace<T>(string key, T value, DateTimeOffset expiresAt) where T : class
+            public bool Replace<T>(string key, T value, DateTimeOffset expiresAt)
             {
                 return false;
             }
 
-            public Task<bool> ReplaceAsync<T>(string key, T value, DateTimeOffset expiresAt) where T : class
+            public Task<bool> ReplaceAsync<T>(string key, T value, DateTimeOffset expiresAt)
             {
                 return null;
             }
 
-            public bool Add<T>(string key, T value, TimeSpan expiresIn) where T : class
+            public bool Add<T>(string key, T value, TimeSpan expiresIn)
             {
                 return false;
             }
 
-            public Task<bool> AddAsync<T>(string key, T value, TimeSpan expiresIn) where T : class
+            public Task<bool> AddAsync<T>(string key, T value, TimeSpan expiresIn)
             {
                 return null;
             }
 
-            public bool Replace<T>(string key, T value, TimeSpan expiresIn) where T : class
+            public bool Replace<T>(string key, T value, TimeSpan expiresIn)
             {
                 return false;
             }
 
-            public Task<bool> ReplaceAsync<T>(string key, T value, TimeSpan expiresIn) where T : class
+            public Task<bool> ReplaceAsync<T>(string key, T value, TimeSpan expiresIn)
             {
                 return null;
             }
 
-            public IDictionary<string, T> GetAll<T>(IEnumerable<string> keys) where T : class
+            public IDictionary<string, T> GetAll<T>(IEnumerable<string> keys)
             {
                 return null;
             }
 
-            public Task<IDictionary<string, T>> GetAllAsync<T>(IEnumerable<string> keys) where T : class
+            public Task<IDictionary<string, T>> GetAllAsync<T>(IEnumerable<string> keys)
             {
                 return null;
             }
 
-            public bool AddAll<T>(IList<Tuple<string, T>> items) where T : class
+            public bool AddAll<T>(IList<Tuple<string, T>> items)
             {
                 return false;
             }
 
-            public Task<bool> AddAllAsync<T>(IList<Tuple<string, T>> items) where T : class
+            public Task<bool> AddAllAsync<T>(IList<Tuple<string, T>> items)
             {
                 return null;
             }
 
- 
-            private StackExchange.Redis.Extensions.Newtonsoft.JsonSerializer _serializer;
+
 
             public bool SetAdd(string memberName, string key)
             {
                 Database.SetAdd(memberName, key);
-               
+
                 return true;
             }
 
             public Task<bool> SetAddAsync(string memberName, string key)
             {
                 return null;
+            }
+
+            public bool SetAdd<T>(string key, T item) where T : class
+            {
+                throw new NotImplementedException();
+            }
+
+            public Task<bool> SetAddAsync<T>(string key, T item) where T : class
+            {
+                throw new NotImplementedException();
             }
 
             public string[] SetMember(string memberName)
@@ -265,6 +276,16 @@ namespace StackExchange.Redis.Extensions.Data.Tests
                 return null;
             }
 
+            public void Save(SaveType saveType)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void SaveAsync(SaveType saveType)
+            {
+                throw new NotImplementedException();
+            }
+
             public Dictionary<string, string> GetInfo()
             {
                 return null;
@@ -273,6 +294,66 @@ namespace StackExchange.Redis.Extensions.Data.Tests
             public Task<Dictionary<string, string>> GetInfoAsync()
             {
                 return null;
+            }
+
+            public long Publish<T>(RedisChannel channel, T message, CommandFlags flags = CommandFlags.None)
+            {
+                throw new NotImplementedException();
+            }
+
+            public Task<long> PublishAsync<T>(RedisChannel channel, T message, CommandFlags flags = CommandFlags.None)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Subscribe<T>(RedisChannel channel, Action<T> handler, CommandFlags flags = CommandFlags.None)
+            {
+                throw new NotImplementedException();
+            }
+
+            public Task SubscribeAsync<T>(RedisChannel channel, Func<T, Task> handler, CommandFlags flags = CommandFlags.None)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Unsubscribe<T>(RedisChannel channel, Action<T> handler, CommandFlags flags = CommandFlags.None)
+            {
+                throw new NotImplementedException();
+            }
+
+            public Task UnsubscribeAsync<T>(RedisChannel channel, Func<T, Task> handler, CommandFlags flags = CommandFlags.None)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void UnsubscribeAll(CommandFlags flags = CommandFlags.None)
+            {
+                throw new NotImplementedException();
+            }
+
+            public Task UnsubscribeAllAsync(CommandFlags flags = CommandFlags.None)
+            {
+                throw new NotImplementedException();
+            }
+
+            public long ListAddToLeft<T>(string key, T item) where T : class
+            {
+                throw new NotImplementedException();
+            }
+
+            public Task<long> ListAddToLeftAsync<T>(string key, T item) where T : class
+            {
+                throw new NotImplementedException();
+            }
+
+            public T ListGetFromRight<T>(string key) where T : class
+            {
+                throw new NotImplementedException();
+            }
+
+            public Task<T> ListGetFromRightAsync<T>(string key) where T : class
+            {
+                throw new NotImplementedException();
             }
 
             public StackExchange.Redis.IDatabase Database
@@ -619,6 +700,16 @@ namespace StackExchange.Redis.Extensions.Data.Tests
                 public Task<RedisResult> ScriptEvaluateAsync(byte[] hash, RedisKey[] keys = null, RedisValue[] values = null, CommandFlags flags = CommandFlags.None)
                 {
                     return null;
+                }
+
+                public Task<RedisResult> ScriptEvaluateAsync(LuaScript script, object parameters = null, CommandFlags flags = CommandFlags.None)
+                {
+                    throw new NotImplementedException();
+                }
+
+                public Task<RedisResult> ScriptEvaluateAsync(LoadedLuaScript script, object parameters = null, CommandFlags flags = CommandFlags.None)
+                {
+                    throw new NotImplementedException();
                 }
 
                 public Task<bool> SetAddAsync(RedisKey key, RedisValue value, CommandFlags flags = CommandFlags.None)
@@ -1235,6 +1326,16 @@ namespace StackExchange.Redis.Extensions.Data.Tests
                     return null;
                 }
 
+                public RedisResult ScriptEvaluate(LuaScript script, object parameters = null, CommandFlags flags = CommandFlags.None)
+                {
+                    throw new NotImplementedException();
+                }
+
+                public RedisResult ScriptEvaluate(LoadedLuaScript script, object parameters = null, CommandFlags flags = CommandFlags.None)
+                {
+                    throw new NotImplementedException();
+                }
+
                 public bool SetAdd(RedisKey key, RedisValue value, CommandFlags flags = CommandFlags.None)
                 {
                     Debug.WriteLine(key.ToString() + " : " + value);
@@ -1268,7 +1369,7 @@ namespace StackExchange.Redis.Extensions.Data.Tests
                     return 0;
                 }
 
-                Dictionary<RedisKey,RedisValue[]> _set = new Dictionary<RedisKey, RedisValue[]>(); 
+                Dictionary<RedisKey,RedisValue[]> _set = new Dictionary<RedisKey, RedisValue[]>();
 
                 public bool SetContains(RedisKey key, RedisValue value, CommandFlags flags = CommandFlags.None)
                 {

@@ -10,7 +10,7 @@
             {
                 if (_clientManager == null)
                 {
-                    var s = new JsonSerializer();
+                    var s = new NewtonsoftSerializer();
                     try
                     {
                         var configurationOptions = new ConfigurationOptions

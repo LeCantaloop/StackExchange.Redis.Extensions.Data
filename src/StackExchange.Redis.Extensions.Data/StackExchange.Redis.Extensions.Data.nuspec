@@ -6,8 +6,8 @@
         <version>$version$</version>
         <authors>$author$</authors>
         <owners>$author$</owners>
-        <licenseUrl>https://github.com/rjmurillo/SimpleRedisGraph/blob/master/LICENSE</licenseUrl>
-        <projectUrl>https://github.com/rjmurillo/SimpleRedisGraph</projectUrl>
+        <licenseUrl>https://github.com/LeCantaloop/StackExchange.Redis.Extensions.Data/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/LeCantaloop/StackExchange.Redis.Extensions.Data</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>
             Extends StackExchange.Redis.Extensions allowing implementation of object relationships, storage of object properties as hashes, and implementing a Repository pattern.
@@ -21,5 +21,17 @@
         <copyright>Richard Murillo</copyright>
         <language>en-US</language>
         <tags>Async Redis NoSQL Client Distributed Cache PubSub Messaging</tags>
+        <dependencies>
+            <dependency id="StackExchange.Redis.Extensions.Core" version="1.1.14" />
+        </dependencies>
+        <frameworkAssemblies>
+            <frameworkAssembly assemblyName="System" />
+            <frameworkAssembly assemblyName="System.ComponentModel.DataAnnotations" />
+            <frameworkAssembly assemblyName="System.Core" />
+            <frameworkAssembly assemblyName="System.Data" />
+            <frameworkAssembly assemblyName="System.Data.DataSetExtensions" />
+            <frameworkAssembly assemblyName="System.Xml" />
+            <frameworkAssembly assemblyName="System.Xml.Linq" />
+        </frameworkAssemblies>
     </metadata>
 </package>
