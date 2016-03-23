@@ -1,0 +1,23 @@
+configuration: Release
+platform: Any CPU
+nuget:
+  account_feed: true
+  project_feed: true
+
+install:
+  - choco install gitversion.portable -pre -y
+
+before_build:
+  - nuget restore
+  - ps: gitversion /l console /output buildserver /updateAssemblyInfo
+
+build:
+  project: StackExchange.Redis.Extensions.Data.sln
+  publish_nuget: true
+  publish_nuget_symbols: true
+  include_nuget_references: true
+  parallel: true
+  verbosity: minimal
+
+artifacts:
+- path: '**\*.nupkg'
