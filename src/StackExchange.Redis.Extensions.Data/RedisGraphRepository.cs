@@ -31,11 +31,11 @@ namespace StackExchange.Redis.Extensions.Data
             return GetInstance(cacheClient, new IdentityKeyGenerator(), relationshipName);
         }
 
-        public void AddUnidirectionalEdge<T>(T a, T b)
+        public void AddUnidirectionalEdge<T>(T a, T b) where T : class
         {
             var edgeKey = GenerateEdgeKey(a);
             var k2 = _keyGenerator.Generate(b);
-            CacheClient.SetAdd(edgeKey, k2.PropertyValue);
+            CacheClient.SetAdd<string>(edgeKey, k2.PropertyValue);
         }
 
         private string GenerateEdgeKey<T>(T a)
@@ -45,7 +45,7 @@ namespace StackExchange.Redis.Extensions.Data
             ;
         }
 
-        public void AddBiDirectionalEdge<T>(T a, T b)
+        public void AddBiDirectionalEdge<T>(T a, T b) where T : class
         {
             AddUnidirectionalEdge(a, b);
             AddUnidirectionalEdge(b, a);

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackExchange.Redis.Extensions.Data", "src\StackExchange.Redis.Extensions.Data\StackExchange.Redis.Extensions.Data.csproj", "{FEB7E55A-0FB2-44CE-85C7-CF7465AEDC1D}"
 EndProject
@@ -39,5 +39,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{FEB7E55A-0FB2-44CE-85C7-CF7465AEDC1D} = {BB1796AE-FDC2-45FA-AA35-2AC79FD9D72F}
 		{78B60AC0-53BB-4445-99CA-EB590E2A71CC} = {5ED07A7C-D4D1-4B5A-8FCC-75373F6191C7}
+	EndGlobalSection
+	GlobalSection(CodealikeProperties) = postSolution
+		SolutionGuid = b8b2a937-87ba-4899-b21c-3a64f27c5cd9
 	EndGlobalSection
 EndGlobal
