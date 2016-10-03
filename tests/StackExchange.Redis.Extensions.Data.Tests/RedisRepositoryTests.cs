@@ -239,7 +239,8 @@ namespace StackExchange.Redis.Extensions.Data.Tests
 
             public bool SetAdd<T>(string key, T item) where T : class
             {
-                throw new NotImplementedException();
+                Database.SetAdd(key, item.ToString());
+                return true;
             }
 
             public Task<bool> SetAddAsync<T>(string key, T item) where T : class
@@ -253,6 +254,11 @@ namespace StackExchange.Redis.Extensions.Data.Tests
             }
 
             public Task<string[]> SetMemberAsync(string memberName)
+            {
+                return null;
+            }
+
+            public Task<IEnumerable<T>> SetMembersAsync<T>(string key)
             {
                 return null;
             }
@@ -354,6 +360,145 @@ namespace StackExchange.Redis.Extensions.Data.Tests
             public Task<T> ListGetFromRightAsync<T>(string key) where T : class
             {
                 throw new NotImplementedException();
+            }
+
+            public bool HashDelete(string hashKey, string key, CommandFlags commandFlags = CommandFlags.None)
+            {
+                return false;
+            }
+
+            public long HashDelete(string hashKey, IEnumerable<string> keys, CommandFlags commandFlags = CommandFlags.None)
+            {
+                return 0;
+            }
+
+            public bool HashExists(string hashKey, string key, CommandFlags commandFlags = CommandFlags.None)
+            {
+                return false;
+            }
+
+            public T HashGet<T>(string hashKey, string key, CommandFlags commandFlags = CommandFlags.None)
+            {
+                return default(T);
+            }
+
+            public Dictionary<string, T> HashGet<T>(string hashKey, IEnumerable<string> keys, CommandFlags commandFlags = CommandFlags.None)
+            {
+                return null;
+            }
+
+            public Dictionary<string, T> HashGetAll<T>(string hashKey, CommandFlags commandFlags = CommandFlags.None)
+            {
+                return null;
+            }
+
+            public long HashIncerementBy(string hashKey, string key, long value, CommandFlags commandFlags = CommandFlags.None)
+            {
+                return 0;
+            }
+
+            public double HashIncerementBy(string hashKey, string key, double value, CommandFlags commandFlags = CommandFlags.None)
+            {
+                return 0;
+            }
+
+            public IEnumerable<string> HashKeys(string hashKey, CommandFlags commandFlags = CommandFlags.None)
+            {
+                yield break;
+            }
+
+            public long HashLength(string hashKey, CommandFlags commandFlags = CommandFlags.None)
+            {
+                return 0;
+            }
+
+            public bool HashSet<T>(string hashKey, string key, T value, bool nx = false, CommandFlags commandFlags = CommandFlags.None)
+            {
+                return false;
+            }
+
+            public void HashSet<T>(string hashKey, Dictionary<string, T> values, CommandFlags commandFlags = CommandFlags.None)
+            {
+            }
+
+            public IEnumerable<T> HashValues<T>(string hashKey, CommandFlags commandFlags = CommandFlags.None)
+            {
+                yield break;
+            }
+
+            public Dictionary<string, T> HashScan<T>(string hashKey, string pattern, int pageSize = 10, CommandFlags commandFlags = CommandFlags.None)
+            {
+                return null;
+            }
+
+            public Task<bool> HashDeleteAsync(string hashKey, string key, CommandFlags commandFlags = CommandFlags.None)
+            {
+                return null;
+            }
+
+            public Task<long> HashDeleteAsync(string hashKey, IEnumerable<string> keys, CommandFlags commandFlags = CommandFlags.None)
+            {
+                return null;
+            }
+
+            public Task<bool> HashExistsAsync(string hashKey, string key, CommandFlags commandFlags = CommandFlags.None)
+            {
+                return null;
+            }
+
+            public Task<T> HashGetAsync<T>(string hashKey, string key, CommandFlags commandFlags = CommandFlags.None)
+            {
+                return null;
+            }
+
+            public Task<Dictionary<string, T>> HashGetAsync<T>(string hashKey, IEnumerable<string> keys, CommandFlags commandFlags = CommandFlags.None)
+            {
+                return null;
+            }
+
+            public Task<Dictionary<string, T>> HashGetAllAsync<T>(string hashKey, CommandFlags commandFlags = CommandFlags.None)
+            {
+                return null;
+            }
+
+            public Task<long> HashIncerementByAsync(string hashKey, string key, long value, CommandFlags commandFlags = CommandFlags.None)
+            {
+                return null;
+            }
+
+            public Task<double> HashIncerementByAsync(string hashKey, string key, double value, CommandFlags commandFlags = CommandFlags.None)
+            {
+                return null;
+            }
+
+            public Task<IEnumerable<string>> HashKeysAsync(string hashKey, CommandFlags commandFlags = CommandFlags.None)
+            {
+                return null;
+            }
+
+            public Task<long> HashLengthAsync(string hashKey, CommandFlags commandFlags = CommandFlags.None)
+            {
+                return null;
+            }
+
+            public Task<bool> HashSetAsync<T>(string hashKey, string key, T value, bool nx = false, CommandFlags commandFlags = CommandFlags.None)
+            {
+                return null;
+            }
+
+            public Task HashSetAsync<T>(string hashKey, IDictionary<string, T> values, CommandFlags commandFlags = CommandFlags.None)
+            {
+                return null;
+            }
+
+            public Task<IEnumerable<T>> HashValuesAsync<T>(string hashKey, CommandFlags commandFlags = CommandFlags.None)
+            {
+                return null;
+            }
+
+            public Task<Dictionary<string, T>> HashScanAsync<T>(string hashKey, string pattern, int pageSize = 10, CommandFlags commandFlags = CommandFlags.None)
+            {
+                return null;
             }
 
             public StackExchange.Redis.IDatabase Database

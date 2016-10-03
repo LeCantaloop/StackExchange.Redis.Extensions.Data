@@ -1,1 +1,0 @@
-"%~dp0.nuget\NuGet.exe" pack ".\src\StackExchange.Redis.Extensions.Data\StackExchange.Redis.Extensions.Data.csproj" -Prop Configuration=Release -OutputDirectory .\.nuget
